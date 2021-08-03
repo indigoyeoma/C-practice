@@ -11,7 +11,7 @@ private:
 	int amo;
 
 public:
-	Account(int newid, char *newname, int newamo) 
+	Account(int newid, char* newname, int newamo)
 	{
 		int len = strlen(newname) + 1;
 		name = new char[len];
@@ -20,11 +20,18 @@ public:
 		amo = newamo;
 
 	}
-	
+	Account(const Account& cpy) {
+		int len = strlen(cpy.name) + 1;
+		name = new char[len];
+		id = cpy.id;
+		strcpy(name, cpy.name);
+		amo = cpy.amo;
+	}
+
 	int getid() {
 		return id;
 	}
-	
+
 	void impamo(int desamo) {
 		this->amo += desamo;
 	}
@@ -35,11 +42,11 @@ public:
 
 	void showinfo() {
 		{
-			cout <<"°èÁÂ ID: " << this->id << endl;
+			cout << "°èÁÂ ID: " << this->id << endl;
 			cout << "°èÁÂ ÀÌ¸§: " << this->name << endl;
 			cout << "ÀÔ±Ý¾×: " << this->amo << endl;
 		}
-		
+
 	}
 	~Account() {
 		delete[]name;
@@ -56,10 +63,10 @@ int main(void) {
 
 	int num = 0;
 	int i = 0;
-	
+
 
 	while (sel != 5) {
-		
+
 		cout << "------MENU------ " << endl;
 		cout << "1. °èÁÂ°è¼³" << endl;
 		cout << "2. ÀÔ ±Ý" << endl;
@@ -108,8 +115,6 @@ int main(void) {
 				else i++;
 			}
 			arr[i]->expamo(samo);
-			break;
-
 			break;
 
 		case 4:
